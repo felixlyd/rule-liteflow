@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: rule-liteflow
+
+server:
+  port: 6666
+
+liteflow:
+  rule-source: config/flow.el.xml
