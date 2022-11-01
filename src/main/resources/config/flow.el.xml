@@ -10,6 +10,6 @@
         </node>
     </nodes>
 <chain name="chain1">
-THEN(s1,test);
+    THEN(s1,test);
 </chain>
 </flow>
