@@ -6,7 +6,7 @@ server:
   port: 6666
 
 liteflow:
-  rule-source: config/flow.el.xml
+  rule-source: config/**/*.el.xml
 
 # eureka配置信息
 eureka:
