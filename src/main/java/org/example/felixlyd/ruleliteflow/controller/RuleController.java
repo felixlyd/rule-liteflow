@@ -8,6 +8,7 @@ import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * class classname
@@ -22,8 +23,8 @@ public class RuleController {
 
     @PostMapping("/rule")
     @ResponseBody
-    public String ruleFlow(@RequestBody RuleReqVo ruleReqVo){
-        LiteflowResponse response = flowExecutor.execute2Resp("ruleChain", ruleReqVo, RuleContext.class);
+    public String ruleFlow(@RequestBody Map<String, String> reqMap){
+        LiteflowResponse response = flowExecutor.execute2Resp("ruleChain", reqMap, RuleContext.class);
         return JSONObject.toJSONString(response);
     }
 }
