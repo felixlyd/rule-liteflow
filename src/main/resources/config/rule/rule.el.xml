@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow>
+
+    <nodes>
+        <node id="rule1" name="规则1" type="script" language="groovy" >
+            <![CDATA[
+                String ruleListStr = ruleContext.getRuleIdList();
+                def ruleList = [];
+                ruleList = ruleListStr.split(",");
+                if(ruleList.contains("1")){
+                    ruleContext.getResults().put("1","OK");
+                }else {
+                    ruleContext.getResults().put("1","FAIL");
+                }
+            ]]>
+        </node>
+        <node id="rule2" name="规则2" type="script" language="groovy" >
+            <![CDATA[
+                Map<String, String> results = ruleContext.getResults();
+                println(results);
+            ]]>
+        </node>
+        <node id="rule3" name="规则3" type="script" language="groovy" >
+            <![CDATA[
+                println(1);
+            ]]>
+        </node>
+    </nodes>
+
     <chain name="ruleChain">
-        THEN(checkReq, reqToRuleContext, test);
+        THEN(checkReq, reqToRuleContext, childRuleChain1);
     </chain>
+
+    <chain name="childRuleChain1">
+        THEN(rule1, rule2, rule3);
+    </chain>
+
 </flow>

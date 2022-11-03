@@ -27,4 +27,12 @@ public class RuleController {
         LiteflowResponse response = flowExecutor.execute2Resp("ruleChain", reqMap, RuleContext.class);
         return JSONObject.toJSONString(response);
     }
+
+    @PostMapping("/refresh")
+    @ResponseBody
+    public String refreshRule(){
+        flowExecutor.reloadRule();
+        return "刷新规则OK";
+    }
+
 }

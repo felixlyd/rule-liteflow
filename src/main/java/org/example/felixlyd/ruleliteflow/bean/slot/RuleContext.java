@@ -2,6 +2,8 @@ package org.example.felixlyd.ruleliteflow.bean.slot;
 
 import com.yomahub.liteflow.slot.DefaultContext;
 
+import java.util.Map;
+
 /**
  * class classname
  *
@@ -13,6 +15,8 @@ public class RuleContext extends DefaultContext {
     private String ruleIdList;
     private String custNo;
     private String cardNo;
+
+    private Map<String ,String > results;
 
     public String getRuleIdList() {
         return ruleIdList;
@@ -36,5 +40,14 @@ public class RuleContext extends DefaultContext {
 
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
+    }
+
+
+    public Map<String, String> getResults() {
+        return results;
+    }
+
+    public void setResults(Map<String, String> results) {
+        this.results = results;
     }
 }

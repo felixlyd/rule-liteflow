@@ -8,6 +8,7 @@ import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,6 +33,9 @@ public class ReqToRuleContextCmp extends NodeComponent {
         for(String key: reqMap.keySet()){
             context.setData(key, reqMap.get(key));
         }
+
+        Map<String , String> results = new HashMap<>();
+        context.setResults(results);
 
     }
 
