@@ -1,6 +1,8 @@
 package org.example.felixlyd.ruleliteflow.bean.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import lombok.Builder;
+import lombok.experimental.Tolerate;
 
 /**
  * class classname
@@ -8,7 +10,12 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author : liuyaodong
  * @date 2022/11/1
  */
+@Builder
 public class EmcsReqVo {
+
+    @Tolerate
+    public EmcsReqVo(){}
+
     @JSONField(name = "REQ")
     private String req;
 

@@ -14,14 +14,12 @@ import java.util.Map;
  * @author : liuyaodong
  * @date 2022/11/2
  */
-@Component("checkReq")
+@Component("checkRuleReq")
 @Slf4j
-public class CheckReqCmp extends NodeComponent {
+public class CheckRuleReqCmp extends NodeComponent {
     @Override
     public void process() throws Exception {
-        Map<String , String > reqMap = this.getSlot().getRequestData();
-        String jsonStrReq = JSONObject.toJSONString(reqMap);
-        RuleReqVo ruleReqVo = JSONObject.parseObject(jsonStrReq, RuleReqVo.class);
+        RuleReqVo ruleReqVo  = this.getSlot().getRequestData();
         log.info("校验参数完成");
     }
 }

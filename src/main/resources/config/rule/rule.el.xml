@@ -7,28 +7,44 @@
                 String ruleListStr = ruleContext.getRuleIdList();
                 def ruleList = [];
                 ruleList = ruleListStr.split(",");
-                if(ruleList.contains("1")){
-                    ruleContext.getResults().put("1","OK");
+                String ruleId = "1";
+                if(ruleList.contains(ruleId)){
+                    ruleContext.getResults().put(ruleId,"OK");
                 }else {
-                    ruleContext.getResults().put("1","FAIL");
+                    ruleContext.getResults().put(ruleId,"FAIL");
                 }
             ]]>
         </node>
         <node id="rule2" name="规则2" type="script" language="groovy" >
             <![CDATA[
-                Map<String, String> results = ruleContext.getResults();
-                println(results);
+                String ruleListStr = ruleContext.getRuleIdList();
+                def ruleList = [];
+                ruleList = ruleListStr.split(",");
+                String ruleId = "2";
+                if(ruleList.contains(ruleId)){
+                    ruleContext.getResults().put(ruleId,"OK");
+                }else {
+                    ruleContext.getResults().put(ruleId,"FAIL");
+                }
             ]]>
         </node>
         <node id="rule3" name="规则3" type="script" language="groovy" >
             <![CDATA[
-                println(1);
+                String ruleListStr = ruleContext.getRuleIdList();
+                def ruleList = [];
+                ruleList = ruleListStr.split(",");
+                String ruleId = "3";
+                if(ruleList.contains(ruleId)){
+                    ruleContext.getResults().put(ruleId,"OK");
+                }else {
+                    ruleContext.getResults().put(ruleId,"FAIL");
+                }
             ]]>
         </node>
     </nodes>
 
     <chain name="ruleChain">
-        THEN(checkReq, reqToRuleContext, childRuleChain1);
+        THEN(checkRuleReq, ruleReqToRuleContext, childRuleChain1);
     </chain>
 
     <chain name="childRuleChain1">

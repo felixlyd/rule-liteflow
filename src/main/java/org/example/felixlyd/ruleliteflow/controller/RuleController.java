@@ -5,6 +5,9 @@ import com.yomahub.liteflow.core.FlowExecutor;
 import com.yomahub.liteflow.flow.LiteflowResponse;
 import org.example.felixlyd.ruleliteflow.bean.slot.RuleContext;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
+import org.example.felixlyd.ruleliteflow.bean.vo.RuleRespVo;
+import org.example.felixlyd.ruleliteflow.service.RuleFlowService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,20 +21,21 @@ import java.util.Map;
  */
 @RestController
 public class RuleController {
-    @Resource
-    private FlowExecutor flowExecutor;
+    @Autowired
+    private RuleFlowService ruleFlowService;
 
     @PostMapping("/rule")
     @ResponseBody
     public String ruleFlow(@RequestBody Map<String, String> reqMap){
-        LiteflowResponse response = flowExecutor.execute2Resp("ruleChain", reqMap, RuleContext.class);
-        return JSONObject.toJSONString(response);
+        RuleReqVo ruleReqVo = JSONObject.parseObject(JSONObject.toJSONString(reqMap), RuleReqVo.class);
+        RuleRespVo ruleRespVo = ruleFlowService.executeRuleFlow(ruleReqVo);
+        return JSONObject.toJSONString(ruleRespVo);
     }
 
     @PostMapping("/refresh")
     @ResponseBody
     public String refreshRule(){
-        flowExecutor.reloadRule();
+        ruleFlowService.reloadRule();
         return "刷新规则OK";
     }
 
