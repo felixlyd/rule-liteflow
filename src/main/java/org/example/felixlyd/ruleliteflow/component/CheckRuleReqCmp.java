@@ -1,12 +1,9 @@
 package org.example.felixlyd.ruleliteflow.component;
 
-import com.alibaba.fastjson.JSONObject;
 import com.yomahub.liteflow.core.NodeComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
 
 /**
  * class classname
