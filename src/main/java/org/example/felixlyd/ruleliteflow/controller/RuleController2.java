@@ -1,16 +1,12 @@
 package org.example.felixlyd.ruleliteflow.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yomahub.liteflow.core.FlowExecutor;
-import com.yomahub.liteflow.flow.LiteflowResponse;
-import org.example.felixlyd.ruleliteflow.bean.slot.RuleContext;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleRespVo;
 import org.example.felixlyd.ruleliteflow.service.RuleFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -20,8 +16,8 @@ import java.util.Map;
  * @date 2022/11/1
  */
 @RestController
-@RequestMapping("/api-a")
-public class RuleController {
+@RequestMapping("/api-b")
+public class RuleController2 {
     @Autowired
     private RuleFlowService ruleFlowService;
 
