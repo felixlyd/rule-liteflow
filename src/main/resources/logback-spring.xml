@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 日志存放路径 -->
+    <springProperty scope="context" name="logging.file.path" source="logging.file.path" />
+    <!-- 日志输出格式 -->
+    <springProperty scope="context" name="logging.pattern.console" source="logging.pattern.console" />
+    <springProperty scope="context" name="logging.pattern.file" source="logging.pattern.file" />
+
+    <include resource="logback-qiqi.xml" />
+    <include resource="logback-skylog-qiqi.xml" />
+
+</configuration>

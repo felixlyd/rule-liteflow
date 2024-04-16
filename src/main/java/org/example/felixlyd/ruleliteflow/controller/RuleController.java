@@ -3,6 +3,7 @@ package org.example.felixlyd.ruleliteflow.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.yomahub.liteflow.core.FlowExecutor;
 import com.yomahub.liteflow.flow.LiteflowResponse;
+import org.example.felixlyd.ruleliteflow.annotation.TestAop;
 import org.example.felixlyd.ruleliteflow.bean.slot.RuleContext;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleReqVo;
 import org.example.felixlyd.ruleliteflow.bean.vo.RuleRespVo;
@@ -25,12 +26,13 @@ public class RuleController {
     @Autowired
     private RuleFlowService ruleFlowService;
 
+    @TestAop
     @PostMapping("/rule")
     @ResponseBody
     public String ruleFlow(@RequestBody Map<String, String> reqMap){
         RuleReqVo ruleReqVo = JSONObject.parseObject(JSONObject.toJSONString(reqMap), RuleReqVo.class);
         RuleRespVo ruleRespVo = ruleFlowService.executeRuleFlow(ruleReqVo);
-        return JSONObject.toJSONString(ruleRespVo);
+        throw new RuntimeException("e");
     }
 
     @PostMapping("/refresh")

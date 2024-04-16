@@ -1,6 +1,13 @@
 spring:
   application:
     name: rule-liteflow
+  # 制定配置文件，配合logback配置中的springProfile标签
+  profiles:
+    active: dev
+  # spring-boot-admin配置日志颜色
+  output:
+    ansi:
+      enabled: ALWAYS
 
 server:
   port: 6666
@@ -8,9 +15,45 @@ server:
 liteflow:
   rule-source: config/**/*.el.xml
 
-# eureka配置信息
+# eureka配置
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
 
+# 日志
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml
+  pattern:
+    console: "%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{36}) - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    path: C:\home/logs/${spring.application.name}
+
+
+# actuator监控
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      # health和info可见, gateway允许动态增加路由
+      # 包括所有端点
+      exposure:
+        include: "*"
+        # 排除端点
+        exclude: shutdown,restart,refresh,caches
+  endpoint:
+    shutdown:
+      enabled: false
+    gateway:
+      enabled: true
+    health:
+      show-details: always
+    logfile:
+      external-file: ${logging.file.path}/console.log

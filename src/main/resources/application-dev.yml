@@ -1,16 +1,2 @@
-spring:
-  application:
-    name: rule-liteflow
 
-server:
-  port: 6667
-
-liteflow:
-  rule-source: config/**/*.el.xml
-
-# eureka配置信息
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8080/eureka/
 
